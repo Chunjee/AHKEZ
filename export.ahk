@@ -4,7 +4,7 @@ if (!A_IsCompiled && A_LineFile == A_ScriptFullPath) {
 }
 
 ;
-;Globals
+; --- Super Globals ---
 ;
 global DQ := """"
 global CR := "`r"
@@ -15,7 +15,7 @@ global STX := Chr(0x02)
 global ETX := Chr(0x03)
 global TAB := "`t"
 ;
-;Helpers
+; --- Helpers ---
 ;
 AhkClass(WinTitle) {
 	return "ahk_class" WinTitle
@@ -33,7 +33,7 @@ AhkGroup(WinTitle) {
 	return "ahk_group" WinTitle
 }
 ;
-;Functions
+; --- Functions ---
 ;
 AutoTrim(Options = "") {
 	AutoTrim, %Options%
@@ -311,8 +311,15 @@ IfNotContains(MatchList, var) {
 	}
 	return false
 }
-ImageSearch(ByRef OutputVarX, ByRef OutputVarY, X1, Y1, X2, Y2, ImageFile) {
+ImageSearch(X1, Y1, X2, Y2, ImageFile) {
 	ImageSearch, OutputVarX, OutputVarY, %X1%, %Y1%, %X2%, %Y2%, %ImageFile%
+	if (OutputVarX) {
+		obj := []
+		obj.x := OutputVarX
+		obj.x := OutputVarY
+		return obj
+	}
+	return false
 }
 IniDelete(Filename, Section, Key = "") {
 	if IsEmpty(Key) {
@@ -347,7 +354,7 @@ IsType(ByRef var, type) {
 	if (type = "object")
 		return IsObject(var)
 	if (type = "string")
-		return ObjGetCapacity([var], 1) != ""
+		return (ObjGetCapacity([var], 1) != "")
 	if var is %type%
 		return true
 	return false
@@ -427,10 +434,17 @@ PixelGetColor(X, Y, RGB = "") {
 	PixelGetColor, v, %X%, %Y%, %RGB%
 	return v
 }
-PixelSearch(ByRef OutputVarX, ByRef OutputVarY, X1, Y1, X2, Y2, ColorID, Variation = "", Mode = "") {
+PixelSearch(X1, Y1, X2, Y2, ColorID, Variation = "", Mode = "") {
 	PixelSearch, OutputVarX, OutputVarY, %X1%, %Y1%, %X2%, %Y2%, %ColorID%, %Variation%, %Mode%
+	if (OutputVarX) {
+		obj := []
+		obj.x := OutputVarX
+		obj.y := OutputVarY
+		return obj
+	}
+	return false
 }
-PostMessage(Msg, wParam = "", lParam = "", Control = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
+PostMesYage(Msg, wParam = "", lParam = "", Control = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	PostMessage, %Msg%, %wParam%, %lParam%, %Control%, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
 }
 Process(SubCommand, PIDOrName = "", Value = "") {
@@ -760,7 +774,7 @@ WinWaitClose(WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 
 
 ;
-; GUI
+; --- GUI ---
 ;
 Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "") {
 	;match gui options first char
@@ -836,4 +850,4 @@ Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "") {
 	Options := SubCommand
 	Gui, %options%
 
-} ; End_Gui()
+}
