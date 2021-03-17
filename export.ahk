@@ -283,20 +283,20 @@ IfBetween(ByRef var, LowerBound, UpperBound) {
 	If var between %LowerBound% and %UpperBound%
 	Return, true
 }
-IfIn(ByRef var, MatchList) {
-	If var in %MatchList%
+IfIn(MatchList, var) {
+	If var in % MatchList
 	Return, true
 }
-IfNotIn(ByRef var, MatchList) {
-	If var not in %MatchList%
+IfNotIn(MatchList, var) {
+	If var not in % MatchList
 	Return, true
 }
-IfContains(ByRef var, MatchList) {
-	If var contains %MatchList%
+IfContains(MatchList, var) {
+	If var contains % MatchList
 	Return, true
 }
-IfNotContains(ByRef var, MatchList) {
-	If var not contains %MatchList%
+IfNotContains(MatchList, var) {
+	If var not contains % MatchList
 	Return, true
 }
 ImageSearch(ByRef OutputVarX, ByRef OutputVarY, X1, Y1, X2, Y2, ImageFile) {
