@@ -1,36 +1,36 @@
 if (!A_IsCompiled && A_LineFile == A_ScriptFullPath) {
 	MsgBox % "This file was not #included."
-	ExitApp
+	exitApp
 }
 
 ;
 ;Globals
 ;
-Global DQ := """"
-Global CR := "`r"
-Global LF := "`n"
-Global CRLF := "`r`n"
-Global NL := "`r`n"
-Global STX := Chr(0x02)
-Global ETX := Chr(0x03)
-Global TAB := "`t"
+global DQ := """"
+global CR := "`r"
+global LF := "`n"
+global CRLF := "`r`n"
+global NL := "`r`n"
+global STX := Chr(0x02)
+global ETX := Chr(0x03)
+global TAB := "`t"
 ;
 ;Helpers
 ;
 AhkClass(WinTitle) {
-	Return "ahk_class" WinTitle
+	return "ahk_class" WinTitle
 }
 AhkId(WinTitle) {
-	Return "ahk_id" WinTitle
+	return "ahk_id" WinTitle
 }
 AhkPid(WinTitle) {
-	Return "ahk_pid" WinTitle
+	return "ahk_pid" WinTitle
 }
 AhkExe(WinTitle) {
-	Return "ahk_exe" WinTitle
+	return "ahk_exe" WinTitle
 }
 AhkGroup(WinTitle) {
-	Return "ahk_group" WinTitle
+	return "ahk_group" WinTitle
 }
 ;
 ;Functions
@@ -58,22 +58,22 @@ ControlFocus(Control = "", WinTitle = "", WinText = "", ExcludeTitle = "", Exclu
 }
 ControlGet(SubCommand, Value = "", Control = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	ControlGet, v, %SubCommand%, %Value%, %Control%, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return, v
+	return v
 }
 ControlGetFocus(WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	ControlGetFocus, v, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return, v
+	return v
 }
 ControlGetID(Control = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	ControlGet, v, Hwnd,, %Control%, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return v
+	return v
 }
 ControlGetPos(ByRef X, ByRef Y, ByRef Width, ByRef Height, ControlID) {
 	ControlGetPos, X, Y, Width, Height, , ahk_id %ControlID%
 }
 ControlGetText(Control = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	ControlGetText, v, %Control%, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return, v
+	return v
 }
 ControlMove(Control = "", X = "", Y = "", Width = "", Height = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	ControlMove, %Control%, %X%, %Y%, %Width%, %Height%, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
@@ -96,7 +96,7 @@ CoordMode(TargetType, RelativeTo := "Screen") {
 	CoordMode, %TargetType%, %RelativeTo%
 }
 Critical(OnOffNumeric = "On") {
-	Critical, %OnOffNumeric%
+	critical, %OnOffNumeric%
 }
 DetectHiddenText(OnOff) {
 	DetectHiddenText, %OnOff%
@@ -109,11 +109,11 @@ Drive(SubCommand = "", Value1 = "", Value2 = "") {
 }
 DriveGet(SubCommand, Value = "") {
 	DriveGet, v, %SubCommand%, %Value%
-	Return, v
+	return v
 }
 DriveSpaceFree(Path) {
 	DriveSpaceFree, v, %Path%
-	Return, v
+	return v
 }
 Edit() {
 	Edit
@@ -127,23 +127,23 @@ EditClear(ControlID) {
 }
 EditGetCurrentCol(ControlID) {
 	ControlGet, OutputVar, CurrentCol,,,ahk_id %ControlID%
-	Return OutputVar
+	return OutputVar
 }
 EditGetCurrentLine(ControlID) {
 	ControlGet, OutputVar, CurrentLine,,,ahk_id %ControlID%
-	Return OutputVar
+	return OutputVar
 }
 EditGetLineCount(ControlID) {
 	ControlGet, OutputVar, LineCount,,,ahk_id %ControlID%
-	Return OutputVar
+	return OutputVar
 }
 EditGetText(ControlID) {
 	ControlGetText, v, , ahk_id %ControlID%
-	Return v
+	return v
 }
 EditGetSelectedText(ControlID) {
 	ControlGet, OutputVar, Selected,,,ahk_id %ControlID%
-	Return OutputVar
+	return OutputVar
 }
 EditPaste(ControlID, String = "") {
 	Control, EditPaste, %String%,,ahk_id %ControlID%
@@ -156,7 +156,7 @@ EnvAdd(ByRef Var, Value = "" , TimeUnits = "") {
 }
 EnvGet(EnvVarName) {
 	EnvGet, v, %EnvVarName%
-	Return, v
+	return v
 }
 EnvSet(EnvVar, Value) {
 	EnvSet, %EnvVar%, %Value%
@@ -191,23 +191,23 @@ FileEncoding(Encoding = "") {
 ;FileExist() ;built-in
 FileGetAttrib(Filename = "") {
 	FileGetAttrib, v, %Filename%
-	Return, v
+	return v
 }
 FileGetShortcut(LinkFile = "") {
 	FileGetShortcut, %LinkFile%, Target, Dir, Args, Description, Icon, IconNum, RunState
-	Return ({"Target": Target, "Dir": Dir, "Args": Args, "Description": Description, "Icon": Icon, "IconNum": IconNum, "RunState": RunState})
+	return ({"Target": Target, "Dir": Dir, "Args": Args, "Description": Description, "Icon": Icon, "IconNum": IconNum, "RunState": RunState})
 }
 FileGetSize(Filename = "", Units = "") {
 	FileGetSize, v, %Filename%, %Units%
-	Return, v
+	return v
 }
 FileGetTime(Filename = "", WhichTime = "") {
 	FileGetTime, v, %Filename%, %WhichTime%
-	Return, v
+	return v
 }
 FileGetVersion(Filename = "") {
 	FileGetVersion, v, %Filename%
-	Return, v
+	return v
 }
 ;FileInstall: Don't wrap in a Function as it conflicts with Ahk2Exe compiler
 FileMove(SourcePattern = "", DestPattern = "", Overwrite = 0) {
@@ -219,11 +219,11 @@ FileMoveDir(Source = "", Dest = "", Flag = "") {
 ;FileOpen() built-in
 FileRead(Filename) {
 	FileRead, v, %Filename%
-	Return, v
+	return v
 }
 FileReadLine(Filename, LineNum) {
 	FileReadLine, v, %Filename%, %LineNum%
-	Return, v
+	return v
 }
 FileRecycle(FilePattern = "") {
 	FileRecycle, %FilePattern%
@@ -239,11 +239,11 @@ FileRename(SourcePattern = "", DestPattern = "", Overwrite = 0) {
 } ;Custom
 FileSelectFile(Options = "", RootDir = "", Prompt = "", Filter = "") {
 	FileSelectFile, v, %Options%, %RootDir%, %Prompt%, %Filter%
-	Return, v
+	return v
 }
 FileSelectFolder(StartingFolder = "", Options = "", Prompt = "") {
 	FileSelectFolder, v, %StartingFolder%, %Options%, %Prompt%
-	Return, v
+	return v
 }
 FileSetAttrib(Attributes = "", FilePattern = "", OperateOnFolders = "", Recurse = "") {
 	FileSetAttrib, %Attributes%, %FilePattern%, %OperateOnFolders%, %Recurse%
@@ -258,7 +258,7 @@ FileWrite(Text = "", Filename = "", Overwrite = 0, Encoding = "") {
 } ;Custom
 FormatTime(YYYYMMDDHH24MISS = "", Format = "") {
 	FormatTime, v, %YYYYMMDDHH24MISS%, %Format%
-	Return, v
+	return v
 } ; FormatTime(Now, "yyyy-MM-dd-hh:ss")
 GroupActivate(GroupName, Mode = "") {
 	GroupActivate, %GroupName%, %Mode%
@@ -277,27 +277,39 @@ GuiControl(Subcommand = "", ControlID = "", Value = "") {
 }
 GuiControlGet(Subcommand = "", ControlID = "", Param4 = "") {
 	GuiControlGet, v, %Subcommand%, %ControlID%, %Param4%
-	Return, v
+	return v
 }
 IfBetween(ByRef var, LowerBound, UpperBound) {
 	If var between %LowerBound% and %UpperBound%
-	Return, true
+	return true
 }
 IfIn(MatchList, var) {
-	If var in % MatchList
-	Return, true
+	If var in %MatchList%
+	{
+		return true
+	}
+	return false
 }
 IfNotIn(MatchList, var) {
-	If var not in % MatchList
-	Return, true
+	If var not in %MatchList%
+	{
+		return true
+	}
+	return false
 }
 IfContains(MatchList, var) {
-	If var contains % MatchList
-	Return, true
+	If var contains %MatchList%
+	{
+		return true
+	}
+	return false
 }
 IfNotContains(MatchList, var) {
-	If var not contains % MatchList
-	Return, true
+	If var not contains %MatchList%
+	{
+		return true
+	}
+	return false
 }
 ImageSearch(ByRef OutputVarX, ByRef OutputVarY, X1, Y1, X2, Y2, ImageFile) {
 	ImageSearch, OutputVarX, OutputVarY, %X1%, %Y1%, %X2%, %Y2%, %ImageFile%
@@ -311,34 +323,34 @@ IniDelete(Filename, Section, Key = "") {
 }
 IniRead(Filename, Section, Key = "", Default = "") {
 	IniRead, v, %Filename%, %Section%, %Key%, %Default%
-	Return, v
+	return v
 }
 IniWrite(ValueOrPairs = "", Filename = "", Section = "", Key="") {
 	IniWrite, %ValueOrPairs%, %Filename%, %Section%, %Key%
 }
 Input(Options = "", EndKeys = "", MatchList = "") {
 	Input, v, %Options%, %EndKeys%, %MatchList%
-	Return, v
+	return v
 }
 InputBox(Title = "", Prompt = "", HIDE = "", Width = "", Height = "", X = "", Y = "", Font = "", Timeout = "", Default = "") {
 	InputBox, v, %Title%, %Prompt%, %HIDE%, %Width%, %Height%, %X%, %Y%, , %Timeout%, %Default%
-	Return, v
+	return v
 }
 IsBlank(var) {
-	Return RegExMatch(var, "^[\s]+$")
+	return RegExMatch(var, "^[\s]+$")
 } ;Custom
 IsEmpty(var) {
-	Return (var = "")
+	return (var = "")
 } ;Custom
 ;IsObject() built-in
 IsType(ByRef var, type) {
 	if (type = "object")
-		Return IsObject(var)
+		return IsObject(var)
 	if (type = "string")
-		Return ObjGetCapacity([var], 1) != ""
+		return ObjGetCapacity([var], 1) != ""
 	if var is %type%
-		Return true
-	Return false
+		return true
+	return false
 }
 Join(Separator, params*) {
 	v := ""
@@ -347,11 +359,11 @@ Join(Separator, params*) {
 		{
 			v .= params.1
 		}
-		Return v
+		return v
 	}
 	for index, p in params
 		v .= p . Separator
-	Return SubStr(v,1,StrLen(v)-StrLen(Separator))
+	return SubStr(v,1,StrLen(v)-StrLen(Separator))
 } ; MsgBox % Join("`n", "one", "two", "three") ; MsgBox % ">" Join(5, "X") "<"
 JoinPath(Dir, File) {
 	Dir := Trim(Dir)
@@ -360,7 +372,7 @@ JoinPath(Dir, File) {
 		Dir := SubStr(Dir,1,-1)
 	if (SubStr(File,1,1) = "\") ;
 		File := SubStr(File,2)
-	Return % Dir . "\" . File
+	return % Dir . "\" . File
 } ; MsgBox % JoinPath(A_ScriptDir, "Filename.exe")
 KeyHistory() {
 	KeyHistory
@@ -413,7 +425,7 @@ OutputDebug(Text) {
 }
 PixelGetColor(X, Y, RGB = "") {
 	PixelGetColor, v, %X%, %Y%, %RGB%
-	Return, v
+	return v
 }
 PixelSearch(ByRef OutputVarX, ByRef OutputVarY, X1, Y1, X2, Y2, ColorID, Variation = "", Mode = "") {
 	PixelSearch, OutputVarX, OutputVarY, %X1%, %Y1%, %X2%, %Y2%, %ColorID%, %Variation%, %Mode%
@@ -426,14 +438,14 @@ Process(SubCommand, PIDOrName = "", Value = "") {
 }
 Random(Min = "", Max = "") {
 	Random, v, %Min%, %Max%
-	Return, v
+	return v
 }
 RegDelete(KeyName , ValueName = "") {
 	RegDelete, %KeyName%, %ValueName%
 }
 RegRead(RootKey, SubKey, ValueName = "") {
 	RegRead, v, %RootKey%, %SubKey%, %ValueName%
-	Return, v
+	return v
 }
 RegWrite(Valuetype = "", RootKey = "", SubKey = "", ValueName = "", Value = "") {
 	RegWrite, %ValueType%, %RootKey%, %SubKey%, %ValueName%, %Value%
@@ -443,14 +455,14 @@ Reload() {
 }
 Run(Target = "", WorkingDir = "", Mode = "") {
 	Run, %Target%, %WorkingDir%, %Mode%, v
-	Return, v
+	return v
 } ; Run("edit " TxtFile) ;notepad, Run(TxtFile) ;notepad++ if associated with .txt
 RunAs(User = "", Password = "", Domain = "") {
 	RunAs, %User%, %Password%, %Domain%
 }
 RunWait(Target, WorkingDir = "", Mode = "") {
 	RunWait, %Target%, %WorkingDir%, %Mode%, v
-	Return, v
+	return v
 }
 Send(Keys) {
 	Send %Keys%
@@ -472,7 +484,7 @@ SendLevel(Level) {
 }
 SendMessage(Msg, wParam = "", lParam = "", Control = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "", Timeout = "") {
 	SendMessage, %Msg%, %wParam%, %lParam%, %Control%, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%, %Timeout%
-	Return ErrorLevel
+	return ErrorLevel
 }
 SendMode(Mode) {
 	SendMode %Mode%
@@ -551,11 +563,11 @@ SoundBeep(Frequency = "", Duration = "") {
 }
 SoundGet(ComponentType = "", ControlType = "", DeviceNumber = "") {
 	SoundGet, v, %ComponentType%, %ControlType%, %DeviceNumber%
-	Return, v
+	return v
 }
 SoundGetWaveVolume(DeviceNumber = "") {
 	SoundGetWaveVolume, v, %DeviceNumber%
-	Return, v
+	return v
 }
 SoundPlay(Filename, Wait = "") {
 	SoundPlay, %Filename%, %Wait%
@@ -568,70 +580,70 @@ SoundSetWaveVolume(Percent , DeviceNumber = "") {
 }
 SplitPath(Path = "") {
 	SplitPath, Path, FileName, Dir, Ext, NameNoExt, Drive
-	Return ({"FileName": FileName, "Dir": Dir, "Ext": Ext, "NameNoExt": NameNoExt, "Drive": Drive})
+	return ({"FileName": FileName, "Dir": Dir, "Ext": Ext, "NameNoExt": NameNoExt, "Drive": Drive})
 } ; SplitPathObj(Filename).NameNoExt
 StatusBarGetText(Part = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	StatusBarGetText, v, %Part%, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return, v
+	return v
 }
 StatusBarWait(BarText = "", Timeout = "", Part# = "", WindowID = "") {
 	StatusBarWait, %BarText%, %Timeout%, %Part#%, ahk_id %WindowID%
 }
 StrContains(Haystack, Needle, CaseSensitive = false, StartingPos = 1, Occurrence = 1) {
-	Return Instr(Haystack, Needle, CaseSensitive, StartingPos, Occurrence) > 0
+	return Instr(Haystack, Needle, CaseSensitive, StartingPos, Occurrence) > 0
 }
 StrDeRef(String) {
- spo := 1
- out := ""
- while (fpo:=RegexMatch(String, "(%(.*?)%)|``(.)", m, spo))
- {
-	out .= SubStr(String, spo, fpo-spo)
-	spo := fpo + StrLen(m)
-	if (m1)
-	 out .= %m2%
-	else switch (m3)
+	spo := 1
+	out := ""
+	while (fpo:=RegexMatch(String, "(%(.*?)%)|``(.)", m, spo))
 	{
-	 case "a": out .= "`a"
-	 case "b": out .= "`b"
-	 case "f": out .= "`f"
-	 case "n": out .= "`n"
-	 case "r": out .= "`r"
-	 case "t": out .= "`t"
-	 case "v": out .= "`v"
-	 default: out .= m3
+		out .= SubStr(String, spo, fpo-spo)
+		spo := fpo + StrLen(m)
+		if (m1)
+		out .= %m2%
+		else switch (m3)
+		{
+		case "a": out .= "`a"
+		case "b": out .= "`b"
+		case "f": out .= "`f"
+		case "n": out .= "`n"
+		case "r": out .= "`r"
+		case "t": out .= "`t"
+		case "v": out .= "`v"
+		default: out .= m3
+		}
 	}
- }
- Return out SubStr(String, spo)
-} ;https://www.autohotkey.com/docs/commands/RegExMatch.htm#ExDeref
+	return out SubStr(String, spo)
+}
 StrEndsWith(Haystack, Needle, CaseSensitive := false, Occurrence = 1) {
-	Return SubStr(Haystack, Instr(Haystack, Needle, CaseSensitive, 0, Occurrence)) = Needle
+	return SubStr(Haystack, Instr(Haystack, Needle, CaseSensitive, 0, Occurrence)) = Needle
 }
 ;StrLen() built-in
 ;StrPut() built-in
 ;StrReplace() built-in
 StrStartsWith(Haystack, Needle, CaseSensitive := false, Occurrence = 1) {
-	Return (Instr(Haystack, Needle, CaseSensitive, 1, Occurrence) = 1)
+	return (Instr(Haystack, Needle, CaseSensitive, 1, Occurrence) = 1)
 }
 StrLower(ByRef InputVar, T = "") {
 	StringLower, v, InputVar, %T%
-	Return, v
+	return v
 }
 ;StrSplit() built-in
 ;StrReplace()  built-in
 StrUpper(ByRef InputVar, T = "") {
 	StringUpper, v, InputVar, %T%
-	Return, v
+	return v
 }
 StringCaseSense(OnOffLocale) {
 	StringCaseSense, %OnOffLocale%
 }
 StringLower(ByRef InputVar, T = "") {
 	StringLower, v, InputVar, %T%
-	Return, v
+	return v
 }
 StringUpper(ByRef InputVar, T = "") {
 	StringUpper, v, InputVar, %T%
-	Return, v
+	return v
 }
 ;SubStr() built-in
 Suspend(Mode = "") {
@@ -639,7 +651,7 @@ Suspend(Mode = "") {
 }
 SysGet(Subcommand, Param3 = "") {
 	SysGet, v, %Subcommand%, %Param3%
-	Return, v
+	return v
 }
 Thread(SubCommand, Value1 = "", Value2 = "") {
 	Thread, %SubCommand% , %Value1%, %Value2%
@@ -668,7 +680,7 @@ WinGetActiveStats(ByRef Title, ByRef Width, ByRef Height, ByRef X, ByRef Y) {
 }
 WinGetActiveTitle() {
 	WinGetActiveTitle, v
-	Return, v
+	return v
 }
 WinClose(WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	WinClose, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
@@ -676,26 +688,26 @@ WinClose(WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 ;WinExist() built-in, same as WinGetID()
 WinGet(SubCommand = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	WinGet, v, %SubCommand%, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return, v
+	return v
 }
 WinGetClass(OutputVar , WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	WinGetClass, v, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return, v
+	return v
 }
 WinGetID(WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	WinGet, v, ID, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return v
+	return v
 } ;from AHKv2, same as WinExist
 WinGetPos(ByRef X, ByRef Y, ByRef Width, ByRef Height, WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	WinGetPos, X, Y, Width, Height, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
 }
 WinGetText(WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	WinGetText, v, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return, v
+	return v
 }
 WinGetTitle(WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	WinGetTitle, v, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
-	Return, v
+	return v
 }
 WinHide(WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	WinHide, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
@@ -745,8 +757,10 @@ WinWaitNotActive(WinTitle = "", WinText = "", TimeOut = "", ExcludeTitle = "", E
 WinWaitClose(WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	WinWaitClose, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
 }
+
+
 ;
-; <AHKEZ_GUI>
+; GUI
 ;
 Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "") {
 	;match gui options first char
@@ -759,13 +773,13 @@ Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "") {
 		if (Value1 = "Custom") {
 			Options := "+HWNDhID " Value2
 			Gui, %SubCommand%, %Value1%, %Options%
-			Return hID
+			return hID
 		} else {
 			ControlType := Value1
 			Options := "+HWNDhID " RegExReplace(Value2, GuiOptNeedle, " $1")
 			text := Value3
 			Gui, %SubCommand%, %ControlType%, %Options%, %text%
-			Return hID
+			return hID
 		}
 	}
 
@@ -777,7 +791,7 @@ Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "") {
 		WindowColor  := RegExReplace(Trim(Value1), StripLeading_C_Needle, "$1")
 		ControlColor := RegExReplace(Value2, StripLeading_C_Needle, "$1")
 		Gui, %SubCommand%, %WindowColor%, %ControlColor%
-		Return
+		return
 	}
 
 	;Gui, Font, Options(cswq), FontName
@@ -786,7 +800,7 @@ Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "") {
 		Options := RegExReplace(Value1, GuiOptNeedle, " $1") ;note A_Space . "$1"
 		FontName := Value2
 		Gui, %SubCommand%, %Options%, %FontName%
-		Return
+		return
 	}
 
 	;Gui, GuiName:New, Options, Title
@@ -795,7 +809,7 @@ Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "") {
 		Options := "+HWNDhID " RegExReplace(Value1, GuiOptNeedle, " $1") ;note A_Space . "$1"
 		Title := Value2
 		Gui, %SubCommand%, %Options%, %Title%
-		Return hID
+		return hID
 	}
 
 	;Gui, Show, Options, Title
@@ -805,14 +819,14 @@ Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "") {
 		Title := Value2
 		Gui, %SubCommand%, %Options%, %Title%
 		hID := WinGetID("A")
-		Return hID
+		return hID
 	}
 
 	Static GuiSubCommands := "Cancel,Destroy,Flash,Hide,Margin,Minimize,Maximize,Menu,Restore,Submit,Tab"
 	;Gui, SubCommand , Value1, Value2, Value3
 	if StrContains(GuiSubCommands, SubCommand) {
 		Gui, %SubCommand%, %Value1%, %Value2%, %Value3%
-		Return
+		return
 	}
 
 	;Gui, +/-Option1 +/-Option2 ...
