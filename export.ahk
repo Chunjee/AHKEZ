@@ -120,21 +120,21 @@ Edit() {
 }
 EditAppend(ControlID, String = "") {
 	String .= "`r`n"
-	Control, EditPaste, %String%,,ahk_id %ControlID%
+	Control, EditPaste, %String%,, ahk_id %ControlID%
 }
 EditClear(ControlID) {
-	ControlSetText,,,ahk_id %ControlID%
+	ControlSetText,,, ahk_id %ControlID%
 }
 EditGetCurrentCol(ControlID) {
-	ControlGet, OutputVar, CurrentCol,,,ahk_id %ControlID%
+	ControlGet, OutputVar, CurrentCol,,, ahk_id %ControlID%
 	return OutputVar
 }
 EditGetCurrentLine(ControlID) {
-	ControlGet, OutputVar, CurrentLine,,,ahk_id %ControlID%
+	ControlGet, OutputVar, CurrentLine,,, ahk_id %ControlID%
 	return OutputVar
 }
 EditGetLineCount(ControlID) {
-	ControlGet, OutputVar, LineCount,,,ahk_id %ControlID%
+	ControlGet, OutputVar, LineCount,,, ahk_id %ControlID%
 	return OutputVar
 }
 EditGetText(ControlID) {
@@ -142,11 +142,11 @@ EditGetText(ControlID) {
 	return v
 }
 EditGetSelectedText(ControlID) {
-	ControlGet, OutputVar, Selected,,,ahk_id %ControlID%
+	ControlGet, OutputVar, Selected,,, ahk_id %ControlID%
 	return OutputVar
 }
 EditPaste(ControlID, String = "") {
-	Control, EditPaste, %String%,,ahk_id %ControlID%
+	Control, EditPaste, %String%,, ahk_id %ControlID%
 }
 EditSetText(ControlID, NewText = "") {
 	ControlSetText,, %NewText%, ahk_id %ControlID%
@@ -322,7 +322,7 @@ ImageSearch(X1, Y1, X2, Y2, ImageFile) {
 	return false
 }
 IniDelete(Filename, Section, Key = "") {
-	if IsEmpty(Key) {
+	if (IsEmpty(Key)) {
 		IniDelete, %Filename%, %Section%
 	} else {
 		IniDelete, %Filename%, %Section%, %Key%
@@ -361,26 +361,29 @@ IsType(ByRef var, type) {
 }
 Join(Separator, params*) {
 	v := ""
-	if IsType(Separator, "integer") {
+	if (IsType(Separator, "integer")) {
 		Loop, %Separator%
 		{
 			v .= params.1
 		}
 		return v
 	}
-	for index, p in params
+	for index, p in params {
 		v .= p . Separator
-	return SubStr(v,1,StrLen(v)-StrLen(Separator))
-} ; MsgBox % Join("`n", "one", "two", "three") ; MsgBox % ">" Join(5, "X") "<"
+	}
+	return SubStr(v, 1, StrLen(v) - StrLen(Separator))
+}
 JoinPath(Dir, File) {
 	Dir := Trim(Dir)
 	File := Trim(File)
-	if (SubStr(Dir,0) = "\")
-		Dir := SubStr(Dir,1,-1)
-	if (SubStr(File,1,1) = "\") ;
-		File := SubStr(File,2)
+	if (SubStr(Dir, 0) = "\") {
+		Dir := SubStr(Dir, 1, -1)
+	}
+	if (SubStr(File, 1, 1) = "\") {
+		File := SubStr(File, 2)
+	}
 	return % Dir . "\" . File
-} ; MsgBox % JoinPath(A_ScriptDir, "Filename.exe")
+}
 KeyHistory() {
 	KeyHistory
 }
@@ -537,7 +540,7 @@ SetTimer(Label = "", PeriodOnOffDelete = "", Priority = "") {
 	SetTimer, %Label%, %PeriodOnOffDelete%, %Priority%
 }
 SetTitleMatchMode(MatchMode = "", Speed = "") {
-	if !IsEmpty(MatchMode) {
+	if (!IsEmpty(MatchMode)) {
 		Switch MatchMode
 		{
 			Case "starts":    Option := 1
@@ -547,7 +550,7 @@ SetTitleMatchMode(MatchMode = "", Speed = "") {
 		}
 		SetTitleMatchMode, %Option%
 	}
-	if !IsEmpty(Speed) {
+	if (!IsEmpty(Speed)) {
 		Switch Speed
 		{
 			Case "fast":      Option := Speed
@@ -595,7 +598,7 @@ SoundSetWaveVolume(Percent , DeviceNumber = "") {
 SplitPath(Path = "") {
 	SplitPath, Path, FileName, Dir, Ext, NameNoExt, Drive
 	return ({"FileName": FileName, "Dir": Dir, "Ext": Ext, "NameNoExt": NameNoExt, "Drive": Drive})
-} ; SplitPathObj(Filename).NameNoExt
+}
 StatusBarGetText(Part = "", WinTitle = "", WinText = "", ExcludeTitle = "", ExcludeText = "") {
 	StatusBarGetText, v, %Part%, %WinTitle%, %WinText%, %ExcludeTitle%, %ExcludeText%
 	return v
@@ -609,12 +612,12 @@ StrContains(Haystack, Needle, CaseSensitive = false, StartingPos = 1, Occurrence
 StrDeRef(String) {
 	spo := 1
 	out := ""
-	while (fpo:=RegexMatch(String, "(%(.*?)%)|``(.)", m, spo))
-	{
+	while (fpo:=RegexMatch(String, "(%(.*?)%)|``(.)", m, spo)) {
 		out .= SubStr(String, spo, fpo-spo)
 		spo := fpo + StrLen(m)
-		if (m1)
-		out .= %m2%
+		if (m1) {
+			out .= %m2%
+		}
 		else switch (m3)
 		{
 		case "a": out .= "`a"
@@ -849,5 +852,4 @@ Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "") {
 	;Options here are all strings, eg: "+E0x40000 -Theme +Owner"
 	Options := SubCommand
 	Gui, %options%
-
 }
