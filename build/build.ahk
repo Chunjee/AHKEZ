@@ -147,6 +147,9 @@ loop, % The_Array.Count() {
 	if (A.isMatch(element, {"category": "external"}) || A.isMatch(element, {"category": "internal"})) {
 		continue
 	}
+	if (A.includes(element.name, "not")) {
+		continue
+	}
 
 	txt := []
 	ExampleArray := []
