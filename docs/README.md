@@ -1,6 +1,6 @@
-# Hyper Tuned AHK
+# Hyper Tuned
 
-Hyper Tuned AHK is a Library for AutoHotkey that strives to make the language more consistant, accessible, and modern.
+Hyper Tuned is a library for AutoHotkey that strives to make the language more consistant, rational, and modern.
 
 
 # How to Use #
