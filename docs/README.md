@@ -1,5 +1,5 @@
 <p align="center">
-	<img alt="hypertuned.ahk logo" src="./docs/logo.svg">
+	<img alt="hypertuned.ahk logo" src="./logo.svg">
 </p>
 
 # hypertuned.ahk
