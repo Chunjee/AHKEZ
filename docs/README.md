@@ -1,6 +1,4 @@
-<p align="center">
-	<img alt="hypertuned.ahk logo" src="./logo.svg">
-</p>
+<img alt="hypertuned.ahk logo" src="./logo.svg">
 
 # hypertuned.ahk
 
@@ -30,11 +28,11 @@ hypertuned.ahk is a library for AutoHotkey that strives to make the language mor
 
 "Setting return variables in the command input is wierd."
 
-hypertuned.ahk solves these problems and more - Now you can just write code and enjoy this awe-inspiring language!
+hypertuned.ahk solves these problems and more - Now you can just enjoy write code with this awe-inspiring language!
 
 
 # Donations #
 
 If you got any value from this project, please return fair value to the author of the forked project "AHKEZ" with a monetary donation using the button below. Thank you.
 
-[![Donate](https://img.shields.io/badge/Buy_me_a_cup_of_Coffee-PayPal-red.svg)](https://www.paypal.me/JimDreherHome)
+[![Donate](https://img.shields.io/badge/Buy_me_a_cup_of_Coffee-PayPal-blue.svg)](https://www.paypal.me/JimDreherHome)
