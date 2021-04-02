@@ -1,3 +1,7 @@
+<p align="center">
+	<img alt="hypertuned.ahk logo" src="./docs/logo.svg">
+</p>
+
 # hypertuned.ahk
 
 hypertuned.ahk is a library for AutoHotkey that strives to make the language more consistant, accessible, and modern.
