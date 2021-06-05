@@ -29,7 +29,7 @@ A := new biga()
 docsRegEx := "\*\*DOC\*\*([\s\S]*?)\*\*\*"
 testsRegEx := "\*\*Tests\*\*([\s\S]*?)\*\*\*"
 categoryRegEx := "src\\(.+)\\\w+\.\w{2,3}"
-newline := "`r`n" ;do not change this as docsify needs `r
+newline := "`r`n" ; do not change this as docsify needs `r
 
 ; Arrays that control doc and test output. For ommiting or only testing certain areas
 ignoreMethodDocsArr := ["internal"]
@@ -156,7 +156,7 @@ loop, % The_Array.Count() {
 	if (element.category != The_Array[A_Index - 1].category) {
 		txt.push(newline "# **" A.startCase(element.category) " methods**" newline)
 	}
-	txt.push("## " "." element.name newline element.doc newline newline)
+	txt.push("## " element.name "( )" newline element.doc newline newline)
 	; if examples not staticly defined in .md file, parse tests for use in documentation
 	if (!A.includes(element.doc, "Example") && A.includes(element.tests, element.name)) {
 		txt.push("#### Example" newline newline "``````autohotkey" newline)
@@ -201,6 +201,8 @@ lib_txt := A.replace(lib_txt,"/(^\s*;(?:.*))(?:\r?\n\g<1>)+/","")
 while (RegExMatch(lib_txt, "Om)^(\h*;.*)(?:\R\g<1>){3,}", RE_Match)) {
 	lib_txt := A.replace(lib_txt, RE_Match.Value(), "")
 }
+; remove blank lines
+lib_txt := A.replace(lib_txt, "/([`r`n]+)/","`r`n")
 FileAppend, %lib_txt%, % lib_File
 
 ; === GLOBAL TESTS ===
