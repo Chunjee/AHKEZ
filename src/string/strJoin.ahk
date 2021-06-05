@@ -16,6 +16,6 @@ strJoin(seperator, params*) {
 
 ; tests
 assert.test(strJoin(",", 1,2,3), "1,2,3")
-strJoin(3, A_Space)
+assert.test(strJoin(3, A_Space), "   ")
 
 ; omit
