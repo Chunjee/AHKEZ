@@ -134,32 +134,8 @@ EnvSub(ByRef Var, Value = "" , TimeUnits = "") {
 EnvUpdate() {
 	EnvUpdate
 }
-FileAppend(Text = "", Filename = "", Encoding = "") {
-	FileAppend, %Text%, %Filename%, %Encoding%
-}
-FileCopy(SourcePattern = "", DestPattern = "", Overwrite = "") {
-	FileCopy, %SourcePattern%, %DestPattern%, %Overwrite%
-}
-FileCopyDir(Source = "", Dest = "", Overwrite = "") {
-	FileCopyDir, %Source%, %Dest%, %Overwrite%
-}
-FileCreateDir(DirName = "") {
-	FileCreateDir, %DirName%
-}
-FileCreateShortcut(Target, ByRef LinkFile, WorkingDir = "", Args = "", Description = "", IconFile = "", ShortcutKey = "", IconNumber = "", RunState = "") {
-	FileCreateShortcut, %Target%, %LinkFile% , %WorkingDir%, %Args%, %Description%, %IconFile%, %ShortcutKe%, %IconNumber%, %RunState%
-}
-FileDelete(FilePattern = "") {
-	FileDelete, %FilePattern%
-}
-FileEncoding(Encoding = "") {
-	FileEncoding, %Encoding%
-}
+
 ;FileExist() ;built-in
-FileGetAttrib(Filename = "") {
-	FileGetAttrib, v, %Filename%
-	return v
-}
 FileGetShortcut(LinkFile = "") {
 	FileGetShortcut, %LinkFile%, Target, Dir, Args, Description, Icon, IconNum, RunState
 	return ({"Target": Target, "Dir": Dir, "Args": Args, "Description": Description, "Icon": Icon, "IconNum": IconNum, "RunState": RunState})
@@ -246,34 +222,6 @@ GuiControlGet(Subcommand = "", ControlID = "", Param4 = "") {
 	GuiControlGet, v, %Subcommand%, %ControlID%, %Param4%
 	return v
 }
-IfBetween(ByRef var, LowerBound, UpperBound) {
-	If var between %LowerBound% and %UpperBound%
-	return true
-}
-ImageSearch(X1, Y1, X2, Y2, ImageFile) {
-	ImageSearch, OutputVarX, OutputVarY, %X1%, %Y1%, %X2%, %Y2%, %ImageFile%
-	if (OutputVarX) {
-		obj := []
-		obj.x := OutputVarX
-		obj.x := OutputVarY
-		return obj
-	}
-	return false
-}
-IniDelete(Filename, Section, Key = "") {
-	if (IsEmpty(Key)) {
-		IniDelete, %Filename%, %Section%
-	} else {
-		IniDelete, %Filename%, %Section%, %Key%
-	}
-}
-IniRead(Filename, Section, Key = "", Default = "") {
-	IniRead, v, %Filename%, %Section%, %Key%, %Default%
-	return v
-}
-IniWrite(ValueOrPairs = "", Filename = "", Section = "", Key="") {
-	IniWrite, %ValueOrPairs%, %Filename%, %Section%, %Key%
-}
 Input(Options = "", EndKeys = "", MatchList = "") {
 	Input, v, %Options%, %EndKeys%, %MatchList%
 	return v
@@ -282,22 +230,7 @@ InputBox(Title = "", Prompt = "", HIDE = "", Width = "", Height = "", X = "", Y 
 	InputBox, v, %Title%, %Prompt%, %HIDE%, %Width%, %Height%, %X%, %Y%, , %Timeout%, %Default%
 	return v
 }
-IsBlank(var) {
-	return RegExMatch(var, "^[\s]+$")
-} ;Custom
-IsEmpty(var) {
-	return (var = "")
-} ;Custom
 ;IsObject() built-in
-IsType(ByRef var, type) {
-	if (type = "object")
-		return IsObject(var)
-	if (type = "string")
-		return (ObjGetCapacity([var], 1) != "")
-	if var is %type%
-		return true
-	return false
-}
 JoinPath(Dir, File) {
 	Dir := Trim(Dir)
 	File := Trim(File)
@@ -308,55 +241,6 @@ JoinPath(Dir, File) {
 		File := SubStr(File, 2)
 	}
 	return % Dir . "\" . File
-}
-KeyHistory() {
-	KeyHistory
-}
-KeyWait(KeyName, Options = "") {
-	KeyWait, %KeyName% , %Options%
-}
-ListHotkeys() {
-	ListHotkeys
-}
-ListLines(OnOff = "") {
-	ListLines, %OnOff%
-}
-Menu(MenuName, SubCommand, Value1 = "", Value2 = "", Value3 = "", Value4 = "") {
-	Menu, %MenuName%, %SubCommand%, %Value1%, %Value2%, %Value3%, %Value4%
-}
-MouseClick(WhichButton = "", X = "", Y = "", ClickCount = "", Speed = "", DownOrUp = "", Relative = "") {
-	MouseClick, %WhichButton%, %X%, %Y%, %ClickCount%, %Speed%, %DownOrUp%, %Relative%
-}
-MouseClickDrag(WhichButton, X1, Y1, X2, Y2, Speed = "", Relative = "") {
-	MouseClickDrag, %WhichButton%, %X1%, %Y1%, %X2%, %Y2%, %Speed%, %Relative%
-}
-MouseGetPos(ByRef OutputVarX = "", ByRef OutputVarY = "", ByRef OutputVarWin = "", ByRef OutputVarControl = "", Mode = "") {
-	MouseGetPos, OutputVarX, OutputVarY, OutputVarWin, OutputVarControl, %Mode%
-}
-MouseMove(X, Y, Speed = "", Relative = "") {
-	MouseMove, %X%, %Y%, %Speed%, %Relative%
-}
-MB(Options = "", Title = "", Text = "", Timeout = "") {
-	MsgBox(Options, Title, Text, Timeout)
-}
-MsgBox(Options = "", Title = "", Text = "", Timeout = "") {
-	IsString := IsType(Options, "string")
-	IsXdigit := IsType(Options, "xdigit")
-	if (Options . Title . Text . Timeout = "" ) {
-		MsgBox, 0, , Press OK to continue.
-	} else if (Title . Text . Timeout = "") {
-		MsgBox, %Options%
-	} else if (Options=0) Or (Options="") {
-		MsgBox, 0, %Title%, %Text%, %Timeout%
-	} else if (IsString) {
-		concat := Options . Title . Text . Timeout
-		MsgBox, %concat%
-	} else if (IsXdigit) {
-		MsgBox, % Options, %Title%, %Text%, %Timeout%
-	}
-}
-OutputDebug(Text) {
-	OutputDebug, %Text%
 }
 PixelGetColor(X, Y, RGB = "") {
 	PixelGetColor, v, %X%, %Y%, %RGB%
