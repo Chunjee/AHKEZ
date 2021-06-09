@@ -8,7 +8,7 @@ SetBatchLines -1 ;Go as fast as CPU will allow
 
 ; User updatable settings:
 settings := {}
-settings.objectName := "tuned"
+settings.objectName := ""
 aliasMap := {}
 
 
@@ -18,11 +18,8 @@ SetWorkingDir, "\..\" A_ScriptDir
 Readme_File := A_WorkingDir "\docs\docs.md"
 lib_File := A_WorkingDir "\export.ahk"
 test_File := A_WorkingDir "\tests\test-all.ahk"
-methods_File := A_WorkingDir "\methodslist.txt"
 
 
-FileRead, methods_arr, % methods_File
-methods_arr := A.compact(A.split(methods_arr, "`r`n"))
 
 ; Globals
 A := new biga()
@@ -128,7 +125,6 @@ loop, % The_Array.Count() {
 	vMethodNames_Array.push(element.name)
 }
 ; clipboard := A.join(vMethodNames_Array, "|")
-; msgbox, % A._printObj(A.difference(methods_arr, vMethodNames_Array))
 
 
 ; ===============
@@ -139,7 +135,6 @@ DOCS_Array := [fn_ReadFile(A_WorkingDir "\src\_head.tail\doc_head.md")]
 
 loop, % The_Array.Count() {
 	element := The_Array[A_Index]
-	; msgbox, % element.tests
 	if (A.indexof(ignoreMethodDocsArr, element.name) != -1 || A.startsWith(element.name, "internal")) { ; skip ignored methods
 		continue
 	}
