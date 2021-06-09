@@ -1,7 +1,7 @@
 <br>
 
 # **Debug methods**
-## .outputDebug
+## outputDebug( )
 Sends a string to the debugger (if any) for display.
 
 
@@ -20,44 +20,44 @@ Sends a string to the debugger (if any) for display.
 
 
 # **File methods**
-## .fileAppend
+## fileAppend( )
 
 
 
 
-## .fileCopy
+## fileCopy( )
 
 
 
 
-## .fileCopyDir
+## fileCopyDir( )
 
 
 
 
-## .fileCreateDir
+## fileCreateDir( )
 
 
 
 
-## .fileCreateShortcut
+## fileCreateShortcut( )
 
 
 
 
-## .fileDelete
+## fileDelete( )
 
 
 
 
-## .fileEncoding
+## fileEncoding( )
 
 
 
 
 
 # **Gui methods**
-## .gui
+## gui( )
 Creates and manages windows and controls.
 
 `Gui(SubCommand = "New", Value1 = "", Value2 = "", Value3 = "")`
@@ -69,55 +69,55 @@ Creates and manages windows and controls.
 
 
 
-## .menu
+## menu( )
 
 
 
 
-## .msgBox
+## msgBox( )
 
 
 
 
 
 # **Hotkey methods**
-## .listHotkeys
+## listHotkeys( )
 
 
 
 
 
 # **Ini methods**
-## .iniDelete
+## iniDelete( )
 
 
 
 
-## .iniRead
+## iniRead( )
 
 
 
 
-## .iniWrite
+## iniWrite( )
 
 
 
 
 
 # **Keyboard methods**
-## .keyHistory
+## keyHistory( )
 
 
 
 
-## .keyWait
+## keyWait( )
 
 
 
 
 
 # **Matchlist methods**
-## .contains
+## contains( )
 
 
 #### Example
@@ -136,7 +136,7 @@ contains(MatchList, 30)
 
 
 
-## .in
+## in( )
 
 
 #### Example
@@ -154,7 +154,7 @@ assert.false(in(MatchList, "Frui"))assert.false(in(MatchList, " Fruit"))```
 
 
 # **Math methods**
-## .between
+## between( )
 
 
 #### Example
@@ -172,7 +172,7 @@ assert.false(between(15, 1, 10))```
 
 
 # **Mouse methods**
-## .mouseClick
+## mouseClick( )
 Concatenates strings together, or multiples of the same string.
 
 
@@ -195,24 +195,24 @@ Concatenates strings together, or multiples of the same string.
 
 
 
-## .mouseClickDrag
+## mouseClickDrag( )
 
 
 
 
-## .mouseGetPos
+## mouseGetPos( )
 
 
 
 
-## .mouseMove
+## mouseMove( )
 
 
 
 
 
 # **Screen methods**
-## .imageSearch
+## imageSearch( )
 Searches a region of the screen for an image.
 
 
@@ -236,7 +236,7 @@ Searches a region of the screen for an image.
 
 
 # **String methods**
-## .strJoin
+## strJoin( )
 Concatenates strings together, or multiples of the same string.
 
 
@@ -253,10 +253,10 @@ value (String|number): The string seperator to concatiate with, or a number when
 #### Example
 
 ```autohotkey
-tunedstrJoin(",", 1,2,3)
+strJoin(",", 1,2,3)
 ; => "1,2,3"
 
-tunedstrJoin(3, A_Space)
+strJoin(3, A_Space)
 ; => "   "
 
 ```
@@ -265,7 +265,7 @@ tunedstrJoin(3, A_Space)
 
 
 # **Type methods**
-## .isBlank
+## isBlank( )
 Checks if the value is madeup of only whitespace such as A_Space or A_Tab.
 
 
@@ -290,7 +290,7 @@ isBlank(" 	 ")
 
 
 
-## .isEmpty
+## isEmpty( )
 Checks if the value is `""` or undefined.
 
 
@@ -315,7 +315,7 @@ assert.false(IsEmpty("Leo"))```
 
 
 
-## .isType
+## isType( )
 Checks if the value is of the specified type.
 
 
@@ -353,14 +353,14 @@ IsType({"a": 1}, "Object")
 
 
 # **Window methods**
-## .window
+## window( )
 
 
 
 
 
 # **Wrapper methods**
-## .all
+## all( )
 
 
 
