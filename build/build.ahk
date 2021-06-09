@@ -39,7 +39,7 @@ msgarray := []
 ; Test RegEx
 testtest := "test\((\w+\w*.*\)),\s*(.*)\)"
 testtrue := "true\((.+?)(\(.+?\))\)"
-testfalse := "false\((.+\.\w+)(.+\))\)"
+testfalse := "false\((.+?)(\(.+?\))\)"
 testnotequal := "notequal\(\w+(\.\w*.*\)),\s*(.*)\)"
 
 ; method names
