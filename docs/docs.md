@@ -148,7 +148,13 @@ MatchList := "Apple,Banana,Cherry,Date,Fruit,Fruit2,Grape,Grapefruit,Pineapple"
 in(MatchList, "Fruit2")
 ; => true
 
-assert.false(in(MatchList, "Frui"))assert.false(in(MatchList, " Fruit"))```
+in(MatchList, "Frui")
+; => false
+
+in(MatchList, " Fruit")
+; => false
+
+```
 
 
 
@@ -166,27 +172,30 @@ between(5, 1, 10)
 between(5.5, 1, 10)
 ; => true
 
-assert.false(between(15, 1, 10))```
+between(15, 1, 10)
+; => false
+
+```
 
 
 
 
 # **Mouse methods**
 ## mouseClick( )
-Concatenates strings together, or multiples of the same string.
+Clicks or holds down a mouse button, or turns the mouse wheel.
 
+> `mouseClick(x, y, [whichButton, clickCount, speed, downOrUp, relative])`
 
 #### Arguments
 
 | Argument       | Type         | Description  |
 | :------------- | :----------- | :----------- |
-|  x            | number       | Optional. (Default `0`) |
-|  y            | number       | Optional. (Default `0`) |
-|  whichButton  | string       | Optional. (Default `""`) |
-|  clickCount   | number       | Optional. (Default `""`) |
-|  speed        | number       | Optional. (Default `""`) |
-|  downOrUp     | string       | Optional. (Default `""`) |
-|  relative     | string       | Optional. (Default `""`) |
+|  x,y           | number       | Optional. (Default `0`) |
+|  whichButton   | string       | Optional. (Default `""`) |
+|  clickCount    | number       | Optional. (Default `""`) |
+|  speed         | number       | Optional. (Default `""`) |
+|  downOrUp      | string       | Optional. (Default `""`) |
+|  relative      | string       | Optional. (Default `""`) |
 
 
 #### Returns
@@ -206,6 +215,22 @@ Concatenates strings together, or multiples of the same string.
 
 
 ## mouseMove( )
+> `mouseMove(x, y, [speed, relative])`
+
+Moves the mouse cursor.
+
+> `mouseMove(x, y, [speed, relative])`
+
+#### Arguments
+| Argument       | Type         | Description  |
+| :------------- | :----------- | :----------- |
+|  x,y           | number       | Required. The x/y coordinates to move the mouse to, which can be expressions. Coordinates are relative to the active window unless CoordMode was used to change that |
+|  speed         | number       | Optional. (Default `0`)  The speed to move the mouse in the range 0 (fastest) to 100 (slowest), which can be an expression. A speed of `0` will move the mouse instantly |
+|  relative      | boolean      | Optional. (Default `false`)  If omitted, the x and y coordinates will be treated as absolute values. To treat as offsets from the current mouse position, specify `true` |
+
+
+#### Returns
+no return value
 
 
 
@@ -243,7 +268,7 @@ Concatenates strings together, or multiples of the same string.
 #### Arguments
 separator (String|number): The string seperator to concatiate with, or a number when repeating values
 
-value (String|number): The string seperator to concatiate with, or a number when repeating values
+value (String|number): The values to concatiate or repeat
 
 
 #### Returns
@@ -311,7 +336,10 @@ IsEmpty("")
 IsEmpty(neverDefinedVar)
 ; => true
 
-assert.false(IsEmpty("Leo"))```
+IsEmpty("Leo")
+; => false
+
+```
 
 
 
